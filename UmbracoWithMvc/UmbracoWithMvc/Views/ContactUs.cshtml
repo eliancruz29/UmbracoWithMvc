@@ -1,0 +1,57 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using Umbraco.Web
+@using UmbracoWithMvc.Controllers
+@{
+	Layout = "Master.cshtml";
+}
+
+<style type="text/css">
+    form{
+        width: 350px;
+        margin: 0 auto;
+    }
+    form fieldset{
+        padding-bottom: 10px;
+    }
+
+    form div{
+        padding-bottom: 5px;
+    }
+
+    form label{
+        width: 150px;
+        display: inline-block;
+    }
+
+    form button{
+        float: right;
+        display: inline-block;
+    }
+</style>
+
+@using (Html.BeginUmbracoForm<ContactUsSurfaceController>("Index"))
+{
+     <fieldset>
+         <div>
+             @Html.Label("Name", "Name: ")
+             @Html.TextBox("Name")
+         </div>
+
+         <div>
+             @Html.Label("Email", "Email: ")
+             @Html.TextBox("Email")
+         </div>
+
+         <div>
+             @Html.Label("Message", "Message: ")
+             @Html.TextBox("Message")
+         </div>
+     </fieldset>
+
+     <fieldset>
+         <button type="reset">Clear</button>
+         <button type="submit">Send</button>
+     </fieldset>
+}
+
+@Html.Action("Index", "MyPluginSurface", new { area = "UmbracoWithMvcPlugins" })
